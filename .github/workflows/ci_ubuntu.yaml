@@ -57,7 +57,9 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -Ddeprecated-functions=OFF
+            -Ddeprecated-functions=OFF \
+            -DCMAKE_C_COMPILER_LAUNCHER=sccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
           cmake --build build
           sudo cmake --install build
 
@@ -72,7 +74,9 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DVERBOSE_CONFIGURE=ON \
-            -D${{ matrix.qbt_gui }}
+            -D${{ matrix.qbt_gui }} \
+            -DCMAKE_C_COMPILER_LAUNCHER=sccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
           cmake --build build
           DESTDIR="qbittorrent" cmake --install build
 
@@ -88,7 +92,9 @@ jobs:
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DQT6=ON \
             -DVERBOSE_CONFIGURE=ON \
-            -D${{ matrix.qbt_gui }}
+            -D${{ matrix.qbt_gui }} \
+            -DCMAKE_C_COMPILER_LAUNCHER=sccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
           cmake --build build
           DESTDIR="qbittorrent" cmake --install build
 
