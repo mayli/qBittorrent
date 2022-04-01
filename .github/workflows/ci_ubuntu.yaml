@@ -32,12 +32,12 @@ jobs:
             build-essential cmake ninja-build pkg-config \
             libboost-dev libssl-dev zlib1g-dev
 
-      - name: Setup ccache
-        uses: Chocobo1/setup-ccache-action@v1
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
         with:
-          update_packager_index: false
-          ccache_options: |
-            max_size=2G
+          key: ${{ matrix.libt_version }}-${{ matrix.qt_version }}
+          variant: sccache
+          max-size: 1G
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
